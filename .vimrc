@@ -13,12 +13,14 @@ Plug 'dense-analysis/ale'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 Plug 'alvan/vim-closetag'
+Plug 'arcticicestudio/nord-vim'
 call plug#end()
 
 set number " show line number
+set laststatus=2
 
 set expandtab " tab to space
-set tabstop=4 shiftwidth=4
+set tabstop=2 shiftwidth=2
 set smarttab
 set autoindent
 set nowrap
@@ -31,19 +33,12 @@ set hlsearch
 set incsearch
 
 set showmatch
-set cursorline
 
 syntax enable
 set relativenumber
-if exists('$TMUX')
-    let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
-    let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
-    let &t_SR = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=2\x7\<Esc>\\"
-else
-    let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-    let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-    let &t_SR = "\<Esc>]50;CursorShape=2\x7"
-endif
+let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+let &t_SR = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=2\x7\<Esc>\\"
 set wildmenu
 set exrc
 let mapleader=","
@@ -59,11 +54,13 @@ nnoremap tj :tabnext<CR>
 nnoremap tk :tabprev<CR>
 nnoremap th :tabfirst<CR>
 nnoremap tl :tablast<CR>
-:nnoremap <Leader>w <C-w>
+nnoremap <Leader>w <C-w>
 
 set foldenable
 set ruler
 set scrolloff=25
+
+colorscheme nord
 
 if (has('termguicolors'))
   set termguicolors
@@ -77,10 +74,9 @@ set t_ZH=[3m
 set t_ZR=[23m
 highlight Comment cterm=italic
 set t_Co=256
-colorscheme onehalfdark
-let g:airline_theme='onehalfdark'
 highlight normal ctermbg=NONE ctermfg=grey
 highlight LineNr ctermbg=NONE ctermfg=grey
+highlight Pmenu ctermbg=black ctermfg=grey
 
 let g:coc_global_extensions = [
   \ 'coc-snippets',
@@ -95,6 +91,8 @@ set updatetime=300
 
 set shortmess+=c
 
+
+
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :
@@ -107,6 +105,7 @@ endfunction
 
 let g:ale_fixers = {'javascript': ['prettier', 'standard', 'eslint']}
 nnoremap <leader>p :ALEFix<CR>
+let g:ale_list_window_size = 0
 
 let g:airline_powerline_fonts = 1
 
