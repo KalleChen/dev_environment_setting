@@ -13,11 +13,14 @@ Plug 'dense-analysis/ale'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 Plug 'alvan/vim-closetag'
-Plug 'arcticicestudio/nord-vim'
+Plug 'preservim/nerdcommenter'
+Plug 'joshdick/onedark.vim'
+Plug 'mileszs/ack.vim'
 call plug#end()
 
 set number " show line number
 set laststatus=2
+
 
 set expandtab " tab to space
 set tabstop=2 shiftwidth=2
@@ -31,7 +34,7 @@ set smartcase
 
 set hlsearch
 set incsearch
-
+set mouse=a
 set showmatch
 
 syntax enable
@@ -55,12 +58,14 @@ nnoremap tk :tabprev<CR>
 nnoremap th :tabfirst<CR>
 nnoremap tl :tablast<CR>
 nnoremap <Leader>w <C-w>
+vmap // <plug>NERDCommenterToggle
+nmap // <plug>NERDCommenterToggle
 
 set foldenable
 set ruler
 set scrolloff=25
 
-colorscheme nord
+colorscheme onedark
 
 if (has('termguicolors'))
   set termguicolors
@@ -106,8 +111,10 @@ endfunction
 let g:ale_fixers = {'javascript': ['prettier', 'standard', 'eslint']}
 nnoremap <leader>p :ALEFix<CR>
 let g:ale_list_window_size = 0
+let g:ale_fix_on_save = 1
 
 let g:airline_powerline_fonts = 1
+
 
 
 " setting html auto close tag
