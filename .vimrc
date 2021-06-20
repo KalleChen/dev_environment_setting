@@ -16,11 +16,12 @@ Plug 'alvan/vim-closetag'
 Plug 'preservim/nerdcommenter'
 Plug 'joshdick/onedark.vim'
 Plug 'mileszs/ack.vim'
+Plug 'APZelos/blamer.nvim'
 call plug#end()
 
 set number " show line number
 set laststatus=2
-
+let g:blamer_enabled = 1
 
 set expandtab " tab to space
 set tabstop=2 shiftwidth=2
@@ -51,7 +52,7 @@ nnoremap B ^
 nnoremap E $
 inoremap jk <esc>
 nnoremap <leader>n :NERDTreeFind<CR>
-nnoremap <leader>f :GFiles<CR>
+nnoremap <leader>f :Files<CR>
 nnoremap tn :tabnew<space>
 nnoremap tj :tabnext<CR>
 nnoremap tk :tabprev<CR>
@@ -60,6 +61,8 @@ nnoremap tl :tablast<CR>
 nnoremap <Leader>w <C-w>
 vmap // <plug>NERDCommenterToggle
 nmap // <plug>NERDCommenterToggle
+noremap <Leader>c "*y
+noremap <Leader>v "*p
 
 set foldenable
 set ruler
@@ -108,7 +111,7 @@ function! s:check_back_space() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-let g:ale_fixers = {'javascript': ['prettier', 'standard', 'eslint']}
+let g:ale_fixers = {'javascript': ['prettier', 'standard', 'eslint'], 'html':['prettier'], 'python':['autopep8', 'yapf']}
 nnoremap <leader>p :ALEFix<CR>
 let g:ale_list_window_size = 0
 let g:ale_fix_on_save = 1
